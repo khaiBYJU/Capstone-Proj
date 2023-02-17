@@ -3,7 +3,7 @@ var rocketImage, rocket
 var spaceImage, space
 
 var gameState = "PLAY"
-
+var score = 0;
 
 function preload(){
     rockImage = loadImage("rock.png");
@@ -25,7 +25,10 @@ function setup() {
 
 function draw() {
     background(0)
+    text("Score: " + score, 400, 50);
+
     if (gameState === "PLAY") {
+        score = score + Math.round(getFrameRate()/60);
 
         if (keyDown("left_arrow")){
             rocket.x = rocket.x - 8
@@ -60,11 +63,11 @@ function draw() {
 
 
 function rockSpawn() {
-    if (frameCount % 240 === 0) {
+    if (frameCount % 50 === 0) {
         var rock = createSprite(200, 200, 50, 50)
         
-        rock.x = Math.round(random(100, 300))
-        rock.velocityY = 1
+        rock.x = Math.round(random(100, 400))
+        rock.velocityY = 5
         rock.velocityY = rock.velocityY + 6
 
 
